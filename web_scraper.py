@@ -4,10 +4,10 @@
 
 from bs4 import BeautifulSoup import requests import pandas as pd
 
-Gradovi u pretrazi
+# Gradovi u pretrazi
 grad = ['beograd', "novi-sad", 'nis', 'kragujevac', 'subotica', 'leskovac', 'zrenjanin', 'pancevo', 'cacak', 'novi-pazar', 'kraljevo', 'smederevo', 'valjevo', 'krusevac', 'vrsac', 'vranje', 'sabac', 'uzice', 'sombor', 'pozarevac', 'zajecar', 'sremsa-mitrovica', 'jagodina', 'loznica', 'pristina', 'kosovska-mitrovica', 'podgorica', 'niksic', 'bar']
 
-Prazne liste za kolone u df
+# Prazne liste za kolone u df
 zemlja_list = [] grad_list = [] postanski_broj_list = [] adresa_list = [] sajt_list = [] ftelefon_list = [] mtelefon_list = [] mejl_list = []
 
 for grad in grad: # Pocetna stranice kategorije: url_poc = 'https://www.planplus.rs/adresar/{}/arhitektura-i-projektovanje/'.format(grad)
@@ -71,13 +71,13 @@ for i in range(1,500):
         mejl_list.append(skidac(url)[7])
     if greska_1 != None:
         break
-Pravljenje df-a od lista
+# Pravljenje df-a od lista
 df=pd.DataFrame({ 'Drzava': zemlja_list, 'Grad': grad_list, 'Posta': postanski_broj_list, 'Adresa': adresa_list, 'Mobilni Telefon': mtelefon_list, 'Fiknsi Telefon': ftelefon_list, 'e-mail': mejl_list, 'Web Sajt': sajt_list })
 
-Cuvanje podataka u csv format
+# Cuvanje podataka u csv format
 dt_name="PlanPlus_izvod" df.to_csv(dt_name+".csv",encoding='utf-8-sig')
 
-Zavrsna poruka
+# Zavrsna poruka
 print("Sacuvano, zavrseno!")
 
 © 2022 GitHub, Inc.
